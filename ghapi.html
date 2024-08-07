@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch GiyHUB Data</title>
+</head>
+<body>
+    <h2>Fetch Data Example</h2>
+    <form id="GHForm">
+        <label for="username">User Nmae:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="followers">Followers Count:</label>
+        <input type="text" id="followers" name="followers" ><br><br>
+        <label for="followers_url">Followers URL:</label>
+        <input type="text" id="followers_url" name="followers_url" ><br><br>
+        
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('GHForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            
+            const username = document.getElementById('username').value;
+
+            
+            fetch(`http://localhost:8000/getusers/` + username, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // const jdata = JSON.parse(data);
+                    document.getElementById('response').innerText = `Success: ${JSON.stringify(data)}`;
+                    document.getElementById('followers').value = data.followers;
+                    document.getElementById('followers_url').value = data.followers_url;               })
+                .catch(error => {
+                    document.getElementById('response').innerText = `Error: ${error.message}`;
+                });
+        });
+    </script>
+</body>
+</html>
