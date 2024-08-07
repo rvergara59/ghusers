@@ -13,7 +13,7 @@ class GhuserController extends Controller
     {
 
         if ($ghu) {
-            $token = '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';
+            $token = 'ACCESS_TOKEN_GOES_HERE';
             $url = 'https://api.github.com/users/'. $ghu;
 
             $ch = curl_init();
@@ -34,10 +34,11 @@ class GhuserController extends Controller
             if (isset($user['status']) ) {
                     return response()->json(['error' => 'Failed to fetch GitHub users'], 500);
                 } else {
+ 
                    $result = array (
                             'username' => $user['login'],
                             'followers_url' => $user['followers_url'],
-                            'followers' => $user['followers']
+                            'followers' => $user['followers'],
                           );
                    return json_encode($result);
                 }

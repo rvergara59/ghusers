@@ -15,11 +15,10 @@
         <input type="text" id="followers" name="followers" ><br><br>
         <label for="followers_url">Followers URL:</label>
         <input type="text" id="followers_url" name="followers_url" ><br><br>
-        
-        
         <button type="submit">Submit</button>
     </form>
-    
+    <ul id="followers_list"></ul>
+
     <div id="response"></div>
 
     <script>
@@ -27,7 +26,6 @@
             event.preventDefault(); // Prevent the form from submitting the traditional way
             
             const username = document.getElementById('username').value;
-
             
             fetch(`http://localhost:8000/getusers/` + username, {
                 method: 'GET',
