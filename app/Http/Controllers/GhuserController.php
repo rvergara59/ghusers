@@ -13,7 +13,7 @@ class GhuserController extends Controller
     {
 
         if ($ghu) {
-            $token = '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';
+            $token = 'YOUR_TOKEN_HERE';
             $url = 'https://api.github.com/users/'. $ghu;
 
             $ch = curl_init();
